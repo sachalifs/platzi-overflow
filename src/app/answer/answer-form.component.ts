@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core'
 import { NgForm } from '@angular/forms'
-import { Answer, User } from './answer.model'
+import { Answer } from './answer.model'
+import { User } from '../auth/user.model'
 import { Question } from '../question/question.model'
 
 @Component({
@@ -8,11 +9,7 @@ import { Question } from '../question/question.model'
   templateUrl: './answer-form.component.html',
   styles: [`
     form {
-      width: 90%;
-      margin: 40px auto;
       margin-top: 20px;
-      display: flex;
-      flex-direction: column;
     }
   `]
 })
@@ -24,7 +21,7 @@ export class AnswerFormComponent {
       form.value.description,
       this.question,
       new Date(),
-      new User('Paula', 'Becerra')
+      new User('', '', 'Paula', 'Becerra')
     )
     this.question.answers.unshift(answer)
     form.reset()

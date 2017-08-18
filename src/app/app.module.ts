@@ -1,12 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Anuglar2-Moment
 import { MomentModule } from 'angular2-moment'
 
 import { AppComponent } from './app.component'
 
+// Screens
+import { SinginScreenComponent } from './auth/signin.screen'
+
+// Components
 import { QuestionDetailComponent } from './question/question-detail.component'
 import { AnswerFormComponent } from './answer/answer-form.component'
 
@@ -18,14 +22,16 @@ import { MaterialModule } from './material.module';
   declarations: [
     AppComponent,
     QuestionDetailComponent,
-    AnswerFormComponent
+    AnswerFormComponent,
+    SinginScreenComponent
   ],
   imports: [
     BrowserModule,
     MaterialModule,
     BrowserAnimationsModule,
     MomentModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
