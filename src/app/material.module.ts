@@ -5,7 +5,8 @@ import {
   MdCardModule,
   MdButtonModule,
   MdInputModule,
-  MdListModule
+  MdListModule,
+  MdTabsModule
 } from '@angular/material';
 
 const modules = [
@@ -14,7 +15,8 @@ const modules = [
   MdCardModule,
   MdButtonModule,
   MdInputModule,
-  MdListModule
+  MdListModule,
+  MdTabsModule
 ]
 
 @NgModule({

@@ -10,6 +10,7 @@ import { AppComponent } from './app.component'
 // Screens
 import { SinginScreenComponent } from './auth/signin.screen'
 import { SignupScreenComponent } from './auth/signup.screen'
+import { QuestionScreenComponent } from './question/question.screen'
 
 // Components
 import { QuestionListComponent } from './question/question-list.component'
@@ -27,7 +28,8 @@ import { MaterialModule } from './material.module';
     AnswerFormComponent,
     SinginScreenComponent,
     SignupScreenComponent,
-    QuestionListComponent
+    QuestionListComponent,
+    QuestionScreenComponent
   ],
   imports: [
     BrowserModule,

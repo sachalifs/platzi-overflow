@@ -1,0 +1,9 @@
+<md-tab-group>
+  <md-tab label="Más recientes">
+    <question-list sort='-createdAt'></question-list>
+  </md-tab>
+  <md-tab label="Hot">
+    <question-list sort='-answers'></question-list>
+  </md-tab>
+</md-tab-group>
+<a class='add-question' md-fab href="/question/new"><md-icon>add</md-icon></a>
