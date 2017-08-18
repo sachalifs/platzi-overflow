@@ -20,6 +20,10 @@ h3 {
   padding-left: 0;
 }
 
+h5 {
+  margin-bottom: 8px;
+}
+
 h5 small {
   font-weight: normal;
   font-size: smaller;

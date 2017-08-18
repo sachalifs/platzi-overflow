@@ -19,15 +19,17 @@
 <div class="answers">
   <h3 md-subheader id="answers-title">Respuestas</h3>
 
-  <ul class="answers-list">
-    <li>
+  <ul class="answers-list" *ngIf="question.answers.length > 0">
+    <li *ngFor="let answer of question.answers">
       <h5>
-        Paula Becerra
-        <small>Hace unos segundos</small>
+        {{ answer.user.firstName }} {{ answer.user.lastName }}
+        <small>{{ answer.createdAt | amLocale: 'es' | amTimeAgo }}</small>
       </h5>
       <p class="description">
-        Yo tengo la respuesta!
+        {{ answer.description }}
       </p>
     </li>
   </ul>
+  <p *ngIf="question.answers.length === 0">Sé el primero en responder esta pregunta</p>
+  <answer-form class="answer-form" [question]="question"></answer-form>
 </div>
