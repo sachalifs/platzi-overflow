@@ -6,7 +6,7 @@ import { User } from './user.model'
   selector: 'signin-screen',
   templateUrl: './signin.screen.html'
 })
-export class SinginScreenComponent implements OnInit {
+export class SigninScreenComponent implements OnInit {
 
   signinForm: FormGroup
 

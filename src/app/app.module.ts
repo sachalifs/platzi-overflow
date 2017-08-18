@@ -8,7 +8,7 @@ import { MomentModule } from 'angular2-moment'
 import { AppComponent } from './app.component'
 
 // Screens
-import { SinginScreenComponent } from './auth/signin.screen'
+import { SigninScreenComponent } from './auth/signin.screen'
 import { SignupScreenComponent } from './auth/signup.screen'
 import { QuestionScreenComponent } from './question/question.screen'
 
@@ -22,12 +22,16 @@ import { AnswerFormComponent } from './answer/answer-form.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 
+// Routing
+
+import { Routing } from './app.routing'
+
 @NgModule({
   declarations: [
     AppComponent,
     QuestionDetailComponent,
     AnswerFormComponent,
-    SinginScreenComponent,
+    SigninScreenComponent,
     SignupScreenComponent,
     QuestionListComponent,
     QuestionScreenComponent,
@@ -39,7 +43,8 @@ import { MaterialModule } from './material.module';
     BrowserAnimationsModule,
     MomentModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Routing
   ],
   providers: [],
   bootstrap: [AppComponent]

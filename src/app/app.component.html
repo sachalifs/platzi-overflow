@@ -1,10 +1,6 @@
 <md-toolbar color="primary">
-  <span>PlatziOverflow</span>
+  <span [routerLink]="['/']">PlatziOverflow</span>
   <span class="space"></span>
-  <md-icon>account_circle</md-icon>
+  <md-icon [routerLink]="['/signin']">account_circle</md-icon>
 </md-toolbar>
-<!-- <question-detail></question-detail> -->
-<!-- <signin-screen></signin-screen> -->
-<!-- <signup-screen></signup-screen> -->
-<!-- <question-list></question-list> -->
-<question-form></question-form>
+<router-outlet></router-outlet>
