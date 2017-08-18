@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
+// Anuglar2-Moment
+import { MomentModule } from 'angular2-moment'
+
+import { AppComponent } from './app.component'
 
 import { QuestionDetailComponent } from './question/question-detail.component'
 
@@ -15,7 +18,8 @@ import { MaterialModule } from './material.module';
   ],
   imports: [
     BrowserModule,
-    MaterialModule
+    MaterialModule,
+    MomentModule
   ],
   providers: [],
   bootstrap: [AppComponent]
