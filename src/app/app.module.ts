@@ -3,12 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { QuestionDetailComponent } from './question/question-detail.component'
+
 // Material Components
 import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    QuestionDetailComponent
   ],
   imports: [
     BrowserModule,
