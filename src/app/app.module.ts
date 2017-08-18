@@ -15,6 +15,7 @@ import { QuestionScreenComponent } from './question/question.screen'
 // Components
 import { QuestionListComponent } from './question/question-list.component'
 import { QuestionDetailComponent } from './question/question-detail.component'
+import { QuestionFormComponent } from './question/question-form.component'
 import { AnswerFormComponent } from './answer/answer-form.component'
 
 // Material Components
@@ -29,7 +30,8 @@ import { MaterialModule } from './material.module';
     SinginScreenComponent,
     SignupScreenComponent,
     QuestionListComponent,
-    QuestionScreenComponent
+    QuestionScreenComponent,
+    QuestionFormComponent
   ],
   imports: [
     BrowserModule,

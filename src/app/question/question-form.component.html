@@ -1,0 +1,35 @@
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <md-input-container>
+    <input
+      mdInput
+      placeholder="Título"
+      name="title"
+      ngModel>
+  </md-input-container>
+  <md-input-container>
+    <textarea
+      mdInput
+      placeholder="Descripción"
+      name="description"
+      ngModel></textarea>
+  </md-input-container>
+  <md-grid-list cols="3" rowHeight="3:2">
+    <md-grid-tile>
+      <md-radio-group [ngModel] name="icon">
+        <md-radio-button value="none">
+          <i class="material-icons">help</i>
+          <small>Sin ícono</small>
+        </md-radio-button>
+      </md-radio-group>
+    </md-grid-tile>
+
+    <md-grid-tile *ngFor="let icon of icons">
+      <md-radio-group [ngModel] name="icon">
+        <md-radio-button value="devicon-{{ icon.name }}-{{ icon.versions.font[0] === 'original' ? icon.versions.svg[0] : icon.versions.font[0] }}">
+          <i md-list-icon class="devicon-{{ icon.name }}-{{ icon.versions.font.length > 1 ? icon.versions.font[1] : (icon.versions.font[0] === 'original' ? icon.versions.svg[0] : icon.versions.font[0]) }}"></i>
+        </md-radio-button>
+      </md-radio-group>
+    </md-grid-tile>
+  </md-grid-list>
+  <button type="submit" md-raised-button color="accent">Enviar</button>
+</form>
