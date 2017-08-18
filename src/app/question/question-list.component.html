@@ -1,0 +1,10 @@
+<md-list>
+  <md-list-item *ngFor="let question of questions">
+    <i *ngIf="question.icon !== 'none'" md-list-icon class="{{question.icon}}"></i>
+    <i *ngIf="question.icon === 'none'" md-list-icon class="material-icons help">help</i>
+    <h3 md-line>{{question.title}}</h3>
+    <p md-line>
+      <small>{{ question.answers.length }} respuestas - {{question.createdAt | amLocale: 'es' | amTimeAgo}}</small>
+    </p>
+  </md-list-item>
+</md-list>
