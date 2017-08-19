@@ -2,10 +2,9 @@ import Debug from 'debug'
 import http from 'http'
 import app from './app'
 import mongoose from 'mongoose'
-import { mongoUrl } from './config'
+import { port, mongoUrl } from './config'
 
 const debug = new Debug('platzi-overflow:root')
-const PORT = 3000
 
 mongoose.Promise = global.Promise;
 
@@ -14,8 +13,8 @@ async function start() {
     useMongoClient: true
   });
 
-  app.listen(PORT, () => {
-    debug(`Server running at port ${PORT}`)
+  app.listen(port, () => {
+    debug(`Server running at port ${port}`)
   })
 }
 
