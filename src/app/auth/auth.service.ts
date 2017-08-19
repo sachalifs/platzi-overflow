@@ -22,17 +22,20 @@ export class AuthService {
     }
   }
 
-  // signup(user: User) {
-  //   const body = JSON.stringify(user)
-  //   const headers = new Headers({'Content-Type': 'application/json'})
-  //   return this.http.post(urljoin(this.usersUrl, 'signup'), body, { headers })
-  //     .map((response: Response) => {
-  //       const json = response.json()
-  //       this.login(json)
-  //       return json
-  //     })
-  //     .catch((error: Response) => Observable.throw(error.json()))
-  // }
+  signup(user: User) {
+    const body = JSON.stringify(user)
+    const headers = new Headers({'Content-Type': 'application/json'})
+    return this.http.post(urljoin(this.usersUrl, 'signup'), body, { headers })
+      .map((response: Response) => {
+        const json = response.json()
+        this.login(json)
+        return json
+      })
+      .catch((error: Response) => {
+        this.handleError(error.json())
+        return Observable.throw(error.json())
+      })
+  }
 
   signin(user: User) {
     const body = JSON.stringify(user)
@@ -73,13 +76,13 @@ export class AuthService {
   }
 
   public handleError = (error: any) => {
-    const { error: { name } } = error
+    const { error: { name }, message } = error
     if (name === 'TokenExpiredError') {
       this.showError('Tu sesión ha expirado')
     } else if (name === 'JsonWebTokenError') {
       this.showError('Ha habido un problema con tu sesión')
     } else {
-      this.showError('Ha ocurrido un error. Inténtalo nuevamente')
+      this.showError(message || 'Ha ocurrido un error. Inténtalo nuevamente')
     }
     this.logout()
   }
