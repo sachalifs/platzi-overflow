@@ -1,17 +1,22 @@
 import express from 'express'
 import {
-  required,
-  questionMiddleware,
-  questions
+  required
 } from '../middleware'
+import { question } from '../db-api'
+import { handleError } from '../utils'
 
 const app = express.Router()
 
-app.get('/', (req, res) => {
-  res.status(200).json(questions)
+app.get('/', async (req, res) => {
+  try {
+    const questions = await question.findAll()
+    res.status(200).json(questions)
+  } catch (err) {
+    handleError(err, res)
+  }
 })
 
-app.get('/:id', questionMiddleware, (req, res) => {
+app.get('/:id', (req, res) => {
   res.status(200).json(req.question)
 })
 
@@ -25,7 +30,7 @@ app.post('/', required, (req, res, next) => {
   res.status(201).json(question)
 })
 
-app.post('/:id/answers', required, questionMiddleware, (req, res, next) => {
+app.post('/:id/answers', required, (req, res, next) => {
   const answer = req.body
   const q = req.question
   answer.createdAt = new Date()
