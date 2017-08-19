@@ -8,7 +8,13 @@ const question = {
   description: 'Miren esta es mi duda...',
   createdAt: new Date(),
   icon: 'devicon-android-plain',
-  answers: []
+  answers: [],
+  user: {
+    email: 'sacha@platzi.com',
+    password: '123456',
+    firstName: 'Sacha',
+    lastName: 'Lifszyc'
+  }
 }
 
 const questions = new Array(10).fill(question)
