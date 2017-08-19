@@ -1,7 +1,9 @@
 import { Component } from '@angular/core'
 import { NgForm } from '@angular/forms'
+import { QuestionService } from './question.service'
 import { Question } from './question.model'
 import icons from './icons'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'question-form',
@@ -15,9 +17,15 @@ import icons from './icons'
       display: block;
     }
   `],
+  providers: [QuestionService]
 })
 export class QuestionFormComponent {
   icons: Array<Object> = icons
+
+  constructor(
+    private questionService: QuestionService,
+    private router: Router
+  ) {}
 
   onSubmit(form: NgForm) {
     const q = new Question(
@@ -26,6 +34,11 @@ export class QuestionFormComponent {
       null,
       form.value.icon
     )
+    this.questionService.addQuestion(q)
+      .subscribe(
+        ({ _id }) => this.router.navigate(['/questions', _id]),
+        error => console.log(error)
+      )
     form.resetForm()
   }
 }

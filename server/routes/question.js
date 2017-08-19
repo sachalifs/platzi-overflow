@@ -24,7 +24,25 @@ app.get('/', (req, res) => {
 })
 
 app.get('/:id', (req, res) => {
-  res.status(200).json(question)
+  const { id } = req.params
+  console.log({ id })
+  const q = questions.find(({ _id }) => _id === +id)
+  res.status(200).json(q)
+})
+
+app.post('/', async (req, res, next) => {
+  const question = req.body
+  question._id = +new Date()
+  question.user = {
+    email: 'sacha@platzi.com',
+    password: '123456',
+    firstName: 'Sacha',
+    lastName: 'Lifszyc'
+  }
+  question.createdAt = new Date()
+  question.answers = []
+  questions.push(question)
+  res.status(201).json(question)
 })
 
 export default app

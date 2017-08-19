@@ -5,7 +5,7 @@ import urljoin from 'url-join'
 import { environment } from '../../environments/environment'
 import 'rxjs/add/operator/toPromise';
 // import 'rxjs/Rx'
-// import { Observable } from 'rxjs'
+import { Observable } from 'rxjs'
 
 @Injectable()
 export class QuestionService {
@@ -30,6 +30,15 @@ export class QuestionService {
                  .toPromise()
                  .then(response => response.json() as Question)
                  .catch(this.handleError);
+    }
+
+    addQuestion(question: Question) {
+      const body = JSON.stringify(question)
+      const headers = new Headers({'Content-Type': 'application/json'})
+
+      return this.http.post(this.questionsUrl, body, { headers })
+        .map((response: Response) => response.json())
+        .catch((error: Response) => Observable.throw(error.json()))
     }
 
     private handleError (error: any) {
