@@ -1,21 +1,11 @@
 import express from 'express'
 import jwt from 'jsonwebtoken'
 import Debug from 'debug'
+import { secret } from '../config'
+import { findUserByEmail, userMiddleware } from '../middleware'
 
 const app = express.Router()
 const debug = new Debug('platzi-overflow:auth')
-
-const secret = 'miclavesecreta'
-
-const users = [
-  {
-    _id: '123',
-    email: 'sacha@platzi.com',
-    password: '123456',
-    firstName: 'Sacha',
-    lastName: 'Lifszyc'
-  }
-]
 
 app.post('/signup', async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body
@@ -38,10 +28,6 @@ app.post('/signup', async (req, res, next) => {
     email
   })
 })
-
-const findUserByEmail = (e) => {
-  return users.find(({ email }) => email === e)
-}
 
 const comparePasswords = (providedPassword, userPassword) =>
   providedPassword === userPassword

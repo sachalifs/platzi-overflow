@@ -36,20 +36,28 @@ export class QuestionService {
     addQuestion(question: Question) {
       const body = JSON.stringify(question)
       const headers = new Headers({'Content-Type': 'application/json'})
+      const token = this.getToken()
 
-      return this.http.post(this.questionsUrl, body, { headers })
+      return this.http.post(this.questionsUrl + token, body, { headers })
         .map((response: Response) => response.json())
         .catch((error: Response) => Observable.throw(error.json()))
     }
 
     addAnswer(answer: Answer) {
+      const token = this.getToken()
       const url = urljoin(this.questionsUrl, answer.question._id, 'answers')
       const body = JSON.stringify(answer)
       const headers = new Headers({'Content-Type': 'application/json'})
 
-      return this.http.post(url, body, { headers })
+      return this.http.post(url + token, body, { headers })
         .map((response: Response) => response.json())
         .catch((error: Response) => Observable.throw(error.json()))
+    }
+
+    getToken() {
+      return localStorage.getItem('token') ?
+        `?token=${localStorage.getItem('token')}` :
+        ''
     }
 
     private handleError (error: any) {

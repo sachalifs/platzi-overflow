@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms'
 import { QuestionService } from './question.service'
 import { Question } from './question.model'
 import icons from './icons'
+import { AuthService } from '../auth/auth.service'
 import { Router } from '@angular/router'
 
 @Component({
@@ -24,7 +25,8 @@ export class QuestionFormComponent {
 
   constructor(
     private questionService: QuestionService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   onSubmit(form: NgForm) {
@@ -37,7 +39,7 @@ export class QuestionFormComponent {
     this.questionService.addQuestion(q)
       .subscribe(
         ({ _id }) => this.router.navigate(['/questions', _id]),
-        error => console.log(error)
+        this.authService.handleError
       )
     form.resetForm()
   }
