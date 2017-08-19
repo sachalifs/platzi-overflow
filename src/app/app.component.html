@@ -1,6 +1,25 @@
 <md-toolbar color="primary">
   <span [routerLink]="['/']">PlatziOverflow</span>
   <span class="space"></span>
-  <md-icon [routerLink]="['/signin']">account_circle</md-icon>
+
+  <div *ngIf="isLoggedIn()">
+    <md-menu #appMenu="mdMenu">
+      <button md-menu-item disabled>
+        {{ fullName() }}
+      </button>
+      <button md-menu-item (click)="logout()">Cerrar sesión</button>
+    </md-menu>
+    <button
+      md-icon-button
+      [mdMenuTriggerFor]="appMenu"
+      class="user-button">
+      <md-icon>account_circle</md-icon>
+    </button>
+  </div>
+
+  <button *ngIf="!isLoggedIn()" [routerLink]="['signin']" md-icon-button class="user-button">
+     <md-icon>account_circle</md-icon>
+  </button>
+
 </md-toolbar>
 <router-outlet></router-outlet>

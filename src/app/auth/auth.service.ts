@@ -56,11 +56,11 @@ export class AuthService {
     this.router.navigateByUrl('/')
   }
 
-  // logout() {
-  //   localStorage.clear()
-  //   this.currentUser = null
-  //   this.router.navigateByUrl('/signin')
-  // }
+  logout() {
+    localStorage.clear()
+    this.currentUser = null
+    this.router.navigateByUrl('/signin')
+  }
 
   isLoggedIn() {
     return localStorage.getItem('token') !== null
@@ -81,6 +81,6 @@ export class AuthService {
     } else {
       this.showError('Ha ocurrido un error. Inténtalo nuevamente')
     }
-    // this.logout()
+    this.logout()
   }
 }
