@@ -1,9 +1,10 @@
 import express from 'express'
 import {
   required,
-  user
+  user,
+  questionMiddleware
 } from '../middleware'
-import { question } from '../db-api'
+import { question, answer } from '../db-api'
 import { handleError } from '../utils'
 
 const app = express.Router()
@@ -17,13 +18,8 @@ app.get('/', async (req, res) => {
   }
 })
 
-app.get('/:id', async (req, res) => {
-  try {
-    const q = await question.findById(req.params.id)
-    res.status(200).json(q)
-  } catch (err) {
-    handleError(err, res)
-  }
+app.get('/:id', questionMiddleware, async (req, res) => {
+  res.status(200).json(req.question)
 })
 
 app.post('/', required, user, async (req, res, next) => {
@@ -39,13 +35,12 @@ app.post('/', required, user, async (req, res, next) => {
   res.status(201).json(saved)
 })
 
-app.post('/:id/answers', required, (req, res, next) => {
-  const answer = req.body
-  const q = req.question
-  answer.createdAt = new Date()
-  answer.user = req.user
-  q.answers.push(answer)
-  res.status(201).json(answer)
+app.post('/:id/answers', required, user, questionMiddleware, async (req, res, next) => {
+  const { title, description, icon } = req.body
+  const a = { title, description, icon }
+  a.user = req.user
+  const saved = await answer.create(req.question, a)
+  res.status(201).json(saved)
 })
 
 export default app

@@ -32,13 +32,5 @@ export default {
     q.user.questions.push(question)
     q.user.save()
     return question
-  },
-  //
-  // createAnswer: async(question, a) => {
-  //   const answer = new Answer({ description, user, question})
-  //   const savedAnswer = await answer.save()
-  //   question.answers.push(savedAnswer)
-  //   question.save()
-  //   return savedAnswer
-  // }
+  }
 }
