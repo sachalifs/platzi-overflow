@@ -10,8 +10,9 @@ import { handleError } from '../utils'
 const app = express.Router()
 
 app.get('/', async (req, res) => {
+  const sort = req.query.sort || '-createdAt'
   try {
-    const questions = await question.findAll()
+    const questions = await question.findAll(sort)
     res.status(200).json(questions)
   } catch (err) {
     handleError(err, res)

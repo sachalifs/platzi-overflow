@@ -5,9 +5,9 @@ import { handleError } from '../utils'
 const debug = new Debug('platzi-overflow:db-api:question')
 
 export default {
-  findAll: async() => {
+  findAll: async(sort) => {
     debug('Finding all questions')
-    return await Question.find().populate('answers')
+    return await Question.find().populate('answers').sort(sort)
   },
 
   findById: async(id) => {

@@ -23,13 +23,14 @@ export class QuestionListComponent {
 
   questions: Question[]
   loading: boolean = false
+  @Input() sort = '-createdAt'
 
   constructor(private questionService: QuestionService) { }
 
   ngOnInit() {
     this.loading = true
     this.questionService
-      .getQuestions()
+      .getQuestions(this.sort)
       .then((questions: Question[]) => {
         this.questions = questions
         this.loading = false
