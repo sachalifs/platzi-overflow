@@ -8,6 +8,9 @@ import { MomentModule } from 'angular2-moment'
 
 import { AppComponent } from './app.component'
 
+// Global services
+import { AuthService } from './auth/auth.service'
+
 // Screens
 import { SigninScreenComponent } from './auth/signin.screen'
 import { SignupScreenComponent } from './auth/signup.screen'
@@ -48,7 +51,7 @@ import { Routing } from './app.routing'
     Routing,
     HttpModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

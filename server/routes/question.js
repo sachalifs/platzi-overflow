@@ -2,13 +2,6 @@ import express from 'express'
 
 const app = express.Router()
 
-const currentUser = {
-  email: 'sacha@platzi.com',
-  password: '123456',
-  firstName: 'Sacha',
-  lastName: 'Lifszyc'
-}
-
 const userMiddleware = (req, res, next) => {
   req.user = currentUser
   next()

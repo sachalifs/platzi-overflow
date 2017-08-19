@@ -9,7 +9,8 @@ import {
   MdTabsModule,
   MdRadioModule,
   MdGridListModule,
-  MdProgressSpinnerModule
+  MdProgressSpinnerModule,
+  MdSnackBarModule
 } from '@angular/material';
 
 const modules = [
@@ -22,7 +23,8 @@ const modules = [
   MdTabsModule,
   MdRadioModule,
   MdGridListModule,
-  MdProgressSpinnerModule
+  MdProgressSpinnerModule,
+  MdSnackBarModule
 ]
 
 @NgModule({
