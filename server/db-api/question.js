@@ -10,19 +10,20 @@ export default {
     return await Question.find().populate('answers')
   },
 
-  // findOneById: async(id) => {
-  //   return await Question
-  //     .findOne({ _id: id })
-  //     .populate('user')
-  //     .populate({
-  //       path: 'answers',
-  //       options: { sort: '-createdAt' },
-  //       populate: {
-  //         path: 'user',
-  //         model: 'User'
-  //       }
-  //     })
-  // },
+  findById: async(id) => {
+    debug(`Finding question with id ${id}`)
+    return await Question
+      .findOne({ _id: id })
+      .populate('user')
+      .populate({
+        path: 'answers',
+        options: { sort: '-createdAt' },
+        populate: {
+          path: 'user',
+          model: 'User'
+        }
+      })
+  },
   //
   // create: async(q) => {
   //   const question = new Question(q)

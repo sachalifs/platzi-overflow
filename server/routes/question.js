@@ -16,8 +16,13 @@ app.get('/', async (req, res) => {
   }
 })
 
-app.get('/:id', (req, res) => {
-  res.status(200).json(req.question)
+app.get('/:id', async (req, res) => {
+  try {
+    const q = await question.findById(req.params.id)
+    res.status(200).json(q)
+  } catch (err) {
+    handleError(err, res)
+  }
 })
 
 app.post('/', required, (req, res, next) => {

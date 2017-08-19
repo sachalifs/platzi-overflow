@@ -3,7 +3,8 @@
   <md-card>
     <md-card-header>
       <div md-card-avatar>
-        <i md-list-icon class="{{question.icon}} icon"></i>
+        <i *ngIf="question.icon !== 'none'" md-list-icon class="{{question.icon}} icon"></i>
+        <i *ngIf="question.icon === 'none'" md-list-icon class="material-icons icon">help</i>
       </div>
       <md-card-title>
         <h2>{{ question.title }}</h2>
