@@ -1,6 +1,7 @@
 import express from 'express'
 import {
-  required
+  required,
+  user
 } from '../middleware'
 import { question } from '../db-api'
 import { handleError } from '../utils'
@@ -25,14 +26,17 @@ app.get('/:id', async (req, res) => {
   }
 })
 
-app.post('/', required, (req, res, next) => {
-  const question = req.body
-  question._id = +new Date()
-  question.user = req.user
-  question.createdAt = new Date()
-  question.answers = []
-  questions.push(question)
-  res.status(201).json(question)
+app.post('/', required, user, async (req, res, next) => {
+  const { title, description, icon } = req.body
+  const q = {
+    title,
+    description,
+    user: req.user,
+    icon
+  }
+
+  const saved = await question.create(q)
+  res.status(201).json(saved)
 })
 
 app.post('/:id/answers', required, (req, res, next) => {

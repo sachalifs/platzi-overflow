@@ -2,22 +2,21 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import Debug from 'debug'
 import { secret } from '../config'
-import { findUserByEmail, userMiddleware } from '../middleware'
+import { User } from '../models'
 
 const app = express.Router()
 const debug = new Debug('platzi-overflow:auth')
 
 app.post('/signup', async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body
-  const user = {
-    _id: +new Date(),
+  const u = new User({
     firstName,
     lastName,
     email,
     password
-  }
+  })
   debug(`Created new user: ${user}`)
-  users.push(user)
+  const user = await u.save()
   const token = jwt.sign({ user }, secret, { expiresIn: 86400})
   res.status(201).json({
     message: 'Saved user',
@@ -34,7 +33,7 @@ const comparePasswords = (providedPassword, userPassword) =>
 
 app.post('/signin', async (req, res, next) => {
   const { email, password } = req.body
-  const user = findUserByEmail(email)
+  const user = await User.findOne({ email })
   if (!user) {
     debug(`User with email ${email} not found`)
     return handleLoginFailed(res)

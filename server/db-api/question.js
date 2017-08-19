@@ -24,14 +24,15 @@ export default {
         }
       })
   },
-  //
-  // create: async(q) => {
-  //   const question = new Question(q)
-  //   await question.save()
-  //   q.user.questions.push(savedQuestion)
-  //   q.user.save()
-  //   return question
-  // },
+
+  create: async(q) => {
+    debug(`Creating new question: ${q}`)
+    const question = new Question(q)
+    await question.save()
+    q.user.questions.push(question)
+    q.user.save()
+    return question
+  },
   //
   // createAnswer: async(question, a) => {
   //   const answer = new Answer({ description, user, question})

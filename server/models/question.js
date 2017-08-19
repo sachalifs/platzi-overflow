@@ -9,7 +9,7 @@ const QuestionSchema = Schema({
   createdAt: { type: Date, default: Date.now, index: true },
   user: { type: ObjectId, ref: 'User', required: true },
   icon: { type: String },
-  answers: [{ type: ObjectId, ref: 'Answer' }]
+  answers: [{ type: ObjectId, ref: 'Answer', default: [] }]
 })
 
 QuestionSchema.post('remove', async message => {
