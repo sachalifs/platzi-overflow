@@ -1,12 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Question } from './question.model';
-
-const q =  new Question(
-  '¿Cómo reutilizo un componente en Android?',
-  'Miren esta es mi duda...',
-  new Date(),
-  'none'
-)
+import { QuestionService } from './question.service'
 
 @Component({
   selector: 'question-list',
@@ -22,10 +16,23 @@ const q =  new Question(
       padding: 0 !important;
       font-size: 48px !important;
     }
-  `]
+  `],
+  providers: [QuestionService]
 })
 export class QuestionListComponent {
 
-  questions: Question[] = new Array(10).fill(q)
+  questions: Question[]
+  loading: boolean = false
 
+  constructor(private questionService: QuestionService) { }
+
+  ngOnInit() {
+    this.loading = true
+    this.questionService
+      .getQuestions()
+      .then((questions: Question[]) => {
+        this.questions = questions
+        this.loading = false
+      });
+  }
 }

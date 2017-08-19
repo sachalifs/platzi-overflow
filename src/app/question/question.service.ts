@@ -15,6 +15,14 @@ export class QuestionService {
       this.questionsUrl = urljoin(environment.apiUrl, 'questions')
     }
 
+    // get("/api/questions")
+    getQuestions(): Promise<void | Question[]> {
+      return this.http.get(this.questionsUrl)
+                 .toPromise()
+                 .then(response => response.json() as Question[])
+                 .catch(this.handleError);
+    }
+
     // get("/api/questions/:id")
     getQuestion(id): Promise<void | Question> {
       const url = urljoin(this.questionsUrl, id)
