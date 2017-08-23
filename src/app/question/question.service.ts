@@ -6,7 +6,7 @@ import urljoin from 'url-join'
 import { environment } from '../../environments/environment'
 import 'rxjs/add/operator/toPromise';
 // import 'rxjs/Rx'
-import { Observable } from 'rxjs'
+import { Observable } from 'rxjs/Observable'
 
 @Injectable()
 export class QuestionService {
